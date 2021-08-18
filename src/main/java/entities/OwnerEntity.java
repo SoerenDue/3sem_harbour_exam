@@ -32,16 +32,18 @@ public class OwnerEntity implements Serializable {
     public OwnerEntity() {
     }
 
+    public OwnerEntity(String name, String address, int phoneNR) {
+        this.name = name;
+        this.address = address;
+        this.phoneNR = phoneNR;
+    }
+        
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public OwnerEntity(String name) {
-        this.name = name;
     }
 
     public String getName() {
@@ -67,5 +69,11 @@ public class OwnerEntity implements Serializable {
     public void setPhoneNR(int phoneNR) {
         this.phoneNR = phoneNR;
     }
+
+    @Override
+    public String toString() {
+        return "OwnerEntity{" + "id=" + id + ", name=" + name + ", address=" + address + ", phoneNR=" + phoneNR + '}';
+    }
+    
     
 }

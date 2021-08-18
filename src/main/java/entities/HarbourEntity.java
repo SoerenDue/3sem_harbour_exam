@@ -31,16 +31,19 @@ public class HarbourEntity implements Serializable {
     public HarbourEntity() {
     }
 
+    public HarbourEntity(String name, String address, int capacityMax, int capacityCurrent) {
+        this.name = name;
+        this.address = address;
+        this.capacityMax = capacityMax;
+        this.capacityCurrent = capacityCurrent;
+    }
+    
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public HarbourEntity(String name) {
-        this.name = name;
     }
 
     public String getName() {
@@ -73,6 +76,11 @@ public class HarbourEntity implements Serializable {
 
     public void setCapacityCurrent(int capacityCurrent) {
         this.capacityCurrent = capacityCurrent;
+    }
+
+    @Override
+    public String toString() {
+        return "HarbourEntity{" + "id=" + id + ", name=" + name + ", address=" + address + ", capacityMax=" + capacityMax + ", capacityCurrent=" + capacityCurrent + '}';
     }
    
     

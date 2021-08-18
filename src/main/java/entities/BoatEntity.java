@@ -33,16 +33,22 @@ public class BoatEntity implements Serializable {
     public BoatEntity() {
     }
 
+    public BoatEntity(String name, String brand, String make, int age, String picture) {
+        this.name = name;
+        this.brand = brand;
+        this.make = make;
+        this.age = age;
+        this.picture = picture;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public BoatEntity(String name) {
-        this.name = name;
     }
 
     public String getName() {
@@ -83,5 +89,11 @@ public class BoatEntity implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    @Override
+    public String toString() {
+        return "BoatEntity{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", make=" + make + ", age=" + age + ", picture=" + picture + '}';
+    }
+    
     
 }
