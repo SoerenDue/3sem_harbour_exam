@@ -13,7 +13,7 @@ import dto.StarWarsShipDTO;
 import dto.JokeDTO;
 import dto.CatFactDTO;
 import dto.DummyDto;
-import entities.DummyEntity;
+import entities.BoatEntity;
 import facade.testFacade;
 import java.io.IOException;
 import static java.lang.String.format;
@@ -66,7 +66,7 @@ public class DummyResource {
       @POST
     @Produces({MediaType.APPLICATION_JSON})
      @Consumes(MediaType.APPLICATION_JSON)
-        public void addNewPerson(DummyEntity p){
+        public void addNewPerson(BoatEntity p){
             System.out.println(p);
             try {
                  if(p.getName()== null){

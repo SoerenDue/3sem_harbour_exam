@@ -6,7 +6,7 @@
 package facade;
 
 import dto.DummyDto;
-import entities.DummyEntity;
+import entities.BoatEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,9 +31,9 @@ public class testFacade {
         }
         return instance;
     }
-        public DummyEntity createPerson(String name){
+        public BoatEntity createPerson(String name){
         EntityManager em = emf.createEntityManager();
-         DummyEntity df1 = new DummyEntity(name);
+         BoatEntity df1 = new BoatEntity(name);
 
         try{
             em.getTransaction().begin();
@@ -42,16 +42,16 @@ public class testFacade {
         }finally {
             em.close();
         }
-         return new DummyEntity(name.toString());
+         return new BoatEntity(name.toString());
         }
         
         
         public List<DummyDto> getAllPersons(){
         
         EntityManager em = emf.createEntityManager();
-          List<DummyEntity> rms;
+          List<BoatEntity> rms;
         try{
-        TypedQuery<DummyEntity> query = em.createQuery("SELECT p FROM DummyEntity p", DummyEntity.class);
+        TypedQuery<BoatEntity> query = em.createQuery("SELECT p FROM DummyEntity p", BoatEntity.class);
             System.out.println(query);
         rms = query.getResultList();
         }catch(Exception e){    
@@ -62,9 +62,9 @@ public class testFacade {
 
     public DummyDto edit(int id, String dtoName) {
     EntityManager em = emf.createEntityManager();
-    DummyEntity personToEdit;
+    BoatEntity personToEdit;
     try{
-        personToEdit = (em.find(DummyEntity.class, id));
+        personToEdit = (em.find(BoatEntity.class, id));
         personToEdit.setName(dtoName);
         em.getTransaction().begin();
         em.merge(personToEdit);
@@ -77,9 +77,9 @@ public class testFacade {
 
     public DummyDto delete(int id) {
         EntityManager em = emf.createEntityManager();
-    DummyEntity personToDelete;
+    BoatEntity personToDelete;
     try{
-        personToDelete = (em.find(DummyEntity.class, id));
+        personToDelete = (em.find(BoatEntity.class, id));
         em.getTransaction().begin();
         em.remove(personToDelete);
         em.getTransaction().commit();

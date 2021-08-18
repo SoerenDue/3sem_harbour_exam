@@ -5,7 +5,7 @@
  */
 package dto;
 
-import entities.DummyEntity;
+import entities.BoatEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +30,11 @@ public class DummyDto {
         return "DummyDto{" + "dtoName=" + dtoName + '}';
     }
 
-    public DummyDto(DummyEntity dtoName) {
+    public DummyDto(BoatEntity dtoName) {
         this.dtoName = dtoName.getName();
     }
     
-public static List<DummyDto> getDtos(List<DummyEntity> rms){
+public static List<DummyDto> getDtos(List<BoatEntity> rms){
         List<DummyDto> rmdtos = new ArrayList();
         rms.forEach(rm->rmdtos.add(new DummyDto(rm)));
         return rmdtos;

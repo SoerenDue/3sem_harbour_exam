@@ -5,7 +5,7 @@
  */
 package utils;
 
-import entities.DummyEntity;
+import entities.BoatEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -21,8 +21,8 @@ public class DummyData {
         try {
         System.out.println("> SETTING UP DUMMY DATA POGGERS");
         EntityManager em = EMF.createEntityManager();
-        DummyEntity df1 = new DummyEntity("Person1");
-        DummyEntity df2 = new DummyEntity("Person2");
+        BoatEntity df1 = new BoatEntity("Person1");
+        BoatEntity df2 = new BoatEntity("Person2");
         em.getTransaction().begin();
         em.persist(df1);
         em.persist(df2);
