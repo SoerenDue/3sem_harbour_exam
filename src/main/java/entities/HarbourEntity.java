@@ -6,10 +6,14 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -27,7 +31,10 @@ public class HarbourEntity implements Serializable {
     private String address;
     private int capacityMax;
     private int capacityCurrent;
-
+    
+    @OneToMany(mappedBy = "harbour", cascade = CascadeType.PERSIST)
+    List<BoatEntity>boats;
+    
     public HarbourEntity() {
     }
 
@@ -36,6 +43,7 @@ public class HarbourEntity implements Serializable {
         this.address = address;
         this.capacityMax = capacityMax;
         this.capacityCurrent = capacityCurrent;
+        this.boats = new ArrayList<>();
     }
     
     public int getId() {
@@ -78,6 +86,19 @@ public class HarbourEntity implements Serializable {
         this.capacityCurrent = capacityCurrent;
     }
 
+    public List<BoatEntity> getBoats() {
+        return boats;
+    }
+
+    public void addBoat(BoatEntity boat) {
+        this.boats.add(boat);
+        if(boat != null){
+            boat.setHarbour(this);
+        }
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "HarbourEntity{" + "id=" + id + ", name=" + name + ", address=" + address + ", capacityMax=" + capacityMax + ", capacityCurrent=" + capacityCurrent + '}';
