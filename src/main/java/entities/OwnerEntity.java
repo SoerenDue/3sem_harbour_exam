@@ -6,10 +6,14 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 /**
@@ -28,6 +32,8 @@ public class OwnerEntity implements Serializable {
     private String address;
     private int phoneNR;
     
+    @ManyToMany(mappedBy = "owners", cascade = CascadeType.PERSIST)
+    private List<BoatEntity>boats;
 
     public OwnerEntity() {
     }
@@ -36,6 +42,7 @@ public class OwnerEntity implements Serializable {
         this.name = name;
         this.address = address;
         this.phoneNR = phoneNR;
+        this.boats = new ArrayList<>();
     }
         
     public int getId() {
@@ -70,6 +77,19 @@ public class OwnerEntity implements Serializable {
         this.phoneNR = phoneNR;
     }
 
+    public List<BoatEntity> getBoats() {
+        return boats;
+    }
+
+        public void addBoat(BoatEntity boat) {
+        if(boat != null){
+            this.boats.add(boat);
+            boat.getBoats.add(this);
+        }
+    }
+
+    
+    
     @Override
     public String toString() {
         return "OwnerEntity{" + "id=" + id + ", name=" + name + ", address=" + address + ", phoneNR=" + phoneNR + '}';

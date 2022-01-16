@@ -10,31 +10,31 @@ package dto;
  * @author mathi
  */
 public class CombinedDTO {
-   private ChuckDTO chuck_Joke;
-   private  JokeDTO random_Joke;
+   private HarbourDTO chuck_Joke;
+   private  BoatDTO random_Joke;
    private StarWarsShipDTO starWarsShip_INFO;
    private CatFactDTO catFact;
 
-    public CombinedDTO(ChuckDTO chuck_Joke, JokeDTO random_Joke, StarWarsShipDTO starWarsShip_INFO, CatFactDTO catFact) {
+    public CombinedDTO(HarbourDTO chuck_Joke, BoatDTO random_Joke, StarWarsShipDTO starWarsShip_INFO, CatFactDTO catFact) {
         this.chuck_Joke = chuck_Joke;
         this.random_Joke = random_Joke;
         this.starWarsShip_INFO = starWarsShip_INFO;
         this.catFact = catFact;
     }
 
-    public ChuckDTO getChuck_Joke() {
+    public HarbourDTO getChuck_Joke() {
         return chuck_Joke;
     }
 
-    public void setChuck_Joke(ChuckDTO chuck_Joke) {
+    public void setChuck_Joke(HarbourDTO chuck_Joke) {
         this.chuck_Joke = chuck_Joke;
     }
 
-    public JokeDTO getRandom_Joke() {
+    public BoatDTO getRandom_Joke() {
         return random_Joke;
     }
 
-    public void setRandom_Joke(JokeDTO random_Joke) {
+    public void setRandom_Joke(BoatDTO random_Joke) {
         this.random_Joke = random_Joke;
     }
 
@@ -56,19 +56,19 @@ public class CombinedDTO {
 
    
 
-    public ChuckDTO getCDTO() {
+    public HarbourDTO getCDTO() {
         return chuck_Joke;
     }
 
-    public void setCDTO(ChuckDTO CDTO) {
+    public void setCDTO(HarbourDTO CDTO) {
         this.chuck_Joke = CDTO;
     }
 
-    public JokeDTO getJDTO() {
+    public BoatDTO getJDTO() {
         return random_Joke;
     }
 
-    public void setJDTO(JokeDTO JDTO) {
+    public void setJDTO(BoatDTO JDTO) {
         this.random_Joke = JDTO;
     }
 

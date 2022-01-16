@@ -29,8 +29,7 @@ public class HarbourEntity implements Serializable {
     private int id;
     private String name;
     private String address;
-    private int capacityMax;
-    private int capacityCurrent;
+    private int capacity;
     
     @OneToMany(mappedBy = "harbour", cascade = CascadeType.PERSIST)
     List<BoatEntity>boats;
@@ -38,11 +37,10 @@ public class HarbourEntity implements Serializable {
     public HarbourEntity() {
     }
 
-    public HarbourEntity(String name, String address, int capacityMax, int capacityCurrent) {
+    public HarbourEntity(String name, String address, int capacity) {
         this.name = name;
         this.address = address;
-        this.capacityMax = capacityMax;
-        this.capacityCurrent = capacityCurrent;
+        this.capacity = capacity;
         this.boats = new ArrayList<>();
     }
     
@@ -70,20 +68,12 @@ public class HarbourEntity implements Serializable {
         this.address = address;
     }
 
-        public int getCapacityMax() {
-        return capacityMax;
+        public int getCapacity() {
+        return capacity;
     }
 
-    public void setCapacityMax(int capacityMax) {
-        this.capacityMax = capacityMax;
-    }
-    
-    public int getCapacityCurrent() {
-        return capacityCurrent;
-    }
-
-    public void setCapacityCurrent(int capacityCurrent) {
-        this.capacityCurrent = capacityCurrent;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public List<BoatEntity> getBoats() {
@@ -101,7 +91,7 @@ public class HarbourEntity implements Serializable {
     
     @Override
     public String toString() {
-        return "HarbourEntity{" + "id=" + id + ", name=" + name + ", address=" + address + ", capacityMax=" + capacityMax + ", capacityCurrent=" + capacityCurrent + '}';
+        return "HarbourEntity{" + "id=" + id + ", name=" + name + ", address=" + address + ", capacity=" + capacity + '}';
     }
    
     

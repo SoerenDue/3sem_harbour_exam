@@ -6,10 +6,13 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -35,7 +38,10 @@ public class BoatEntity implements Serializable {
     @ManyToOne
     private HarbourEntity harbour;
     
-
+    @ManyToMany
+    private List<OwnerEntity>owners;
+    
+    
     public BoatEntity() {
     }
 
@@ -45,6 +51,7 @@ public class BoatEntity implements Serializable {
         this.make = make;
         this.age = age;
         this.picture = picture;
+        this.owners = new ArrayList<>();
     }
     
     
@@ -102,6 +109,17 @@ public class BoatEntity implements Serializable {
 
     public void setHarbour(HarbourEntity harbour) {
         this.harbour = harbour;
+    }
+
+    public List<OwnerEntity> getOwners() {
+        return owners;
+    }
+
+    public void addOwners(OwnerEntity owner) {
+        if(owner != null){
+            this.owners.add(owner);
+            owner.getOwners().add(this);
+        }
     }
     
     

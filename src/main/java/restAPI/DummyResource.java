@@ -7,10 +7,10 @@ package restAPI;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dto.ChuckDTO;
+import dto.HarbourDTO;
 import dto.CombinedDTO;
 import dto.StarWarsShipDTO;
-import dto.JokeDTO;
+import dto.BoatDTO;
 import dto.CatFactDTO;
 import dto.DummyDto;
 import entities.BoatEntity;
@@ -123,8 +123,8 @@ public class DummyResource {
         CatFactDTO cat =  gson.fromJson(catfact, CatFactDTO.class);
             System.out.println(catfact);
                    System.out.println(cat);
-       ChuckDTO dto = gson.fromJson(chuck, ChuckDTO.class);
-        JokeDTO jokedto = gson.fromJson(joke, JokeDTO.class);
+       HarbourDTO dto = gson.fromJson(chuck, HarbourDTO.class);
+        BoatDTO jokedto = gson.fromJson(joke, BoatDTO.class);
        CombinedDTO cw = new CombinedDTO(dto,jokedto,ship,cat);
             System.out.println(cw);
          list.add(cw);
