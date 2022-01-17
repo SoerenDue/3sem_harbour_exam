@@ -5,6 +5,7 @@
  */
 package entities;
 
+import entities.BoatEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +93,7 @@ public class OwnerEntity implements Serializable {
     
     @Override
     public String toString() {
-        return "OwnerEntity{" + "id=" + id + ", name=" + name + ", address=" + address + ", phoneNR=" + phoneNR + '}';
+        return "OwnerEntity{" + ", name=" + name + '}';
     }
     
     

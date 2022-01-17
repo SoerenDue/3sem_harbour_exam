@@ -6,6 +6,8 @@
 package dto;
 
 import entities.BoatEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +21,6 @@ public class BoatDTO {
     private String picture;
 
     public BoatDTO(int id, String name, String brand, String make, String picture) {
-        this.id = id;
         this.name = name;
         this.brand = brand;
         this.make = make;
@@ -65,6 +66,20 @@ public class BoatDTO {
     public void setPicture(String picture) {
         this.picture = picture;
     }   
+    
+    public BoatDTO(BoatEntity rm) {
+        this.id = rm.getId();
+        this.brand = rm.getBrand();
+        this.make = rm.getMake();
+        this.boatName = rm.getName();
+        this.picture = rm.getPicture();
+    }
+    
+     public static List<BoatDTO> getDTOs(List<BoatEntity> rms){
+        List<BoatDTO> rmDTOs = new ArrayList();
+        rms.forEach(rm->rmDTOs.add(new BoatDTO(rm)));
+        return rmDTOs;
+    }    
     
     
     @Override

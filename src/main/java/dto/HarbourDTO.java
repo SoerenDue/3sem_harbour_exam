@@ -5,7 +5,10 @@
  */
 package dto;
 
+import entities.BoatEntity;
 import entities.HarbourEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,12 +19,15 @@ public class HarbourDTO {
     private String name;
     private String address;
     private int capacity;
-
+    
+    List<BoatEntity>boats;
+    
     public HarbourDTO(int id, String name, String address, int capacity) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.capacity = capacity;
+        this.boats = new ArrayList<>();    
     }
 
     public int getId() {
@@ -54,6 +60,17 @@ public class HarbourDTO {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+    
+    public List<BoatEntity> getBoats() {
+        return boats;
+    }
+
+    public void addBoat(BoatEntity boat) {
+        this.boats.add(boat);
+        if(boat != null){
+            boat.setHarbour(this);
+        }
     }
     
     @Override

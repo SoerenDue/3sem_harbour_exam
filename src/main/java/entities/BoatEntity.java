@@ -32,7 +32,6 @@ public class BoatEntity implements Serializable {
     private String name;
     private String brand;
     private String make;
-    private int age;
     private String picture;
     
     @ManyToOne
@@ -45,11 +44,10 @@ public class BoatEntity implements Serializable {
     public BoatEntity() {
     }
 
-    public BoatEntity(String name, String brand, String make, int age, String picture) {
+    public BoatEntity(String name, String brand, String make, String picture) {
         this.name = name;
         this.brand = brand;
         this.make = make;
-        this.age = age;
         this.picture = picture;
         this.owners = new ArrayList<>();
     }
@@ -86,14 +84,6 @@ public class BoatEntity implements Serializable {
     public void setMake(String make) {
         this.make = make;
     }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
     
     public String getPicture() {
         return picture;
@@ -126,7 +116,7 @@ public class BoatEntity implements Serializable {
     
     @Override
     public String toString() {
-        return "BoatEntity{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", make=" + make + ", age=" + age + ", picture=" + picture + '}';
+        return "BoatEntity{" + "id=" + id + ", name=" + name + ", brand=" + brand + ", make=" + make + ", picture=" + picture + '}';
     }
     
     
