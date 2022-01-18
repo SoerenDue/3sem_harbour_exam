@@ -7,7 +7,9 @@ package facade;
 
 import dto.BoatDTO;
 import dto.DummyDto;
+import dto.HarbourDTO;
 import entities.BoatEntity;
+import entities.HarbourEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,7 +27,7 @@ public class HarbourFacade {
             private HarbourFacade() {}
 
 
-    public static HarbourFacade getDummyFacade(EntityManagerFactory _emf) {
+    public static HarbourFacade getHarbourFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new HarbourFacade();
@@ -47,33 +49,18 @@ public class HarbourFacade {
         return BoatDTO.getDTOs(rms);
     }
 
-    public DummyDto edit(int id, String dtoName) {
-    EntityManager em = emf.createEntityManager();
-    BoatEntity personToEdit;
-    try{
-        personToEdit = (em.find(BoatEntity.class, id));
-        personToEdit.setName(dtoName);
-        em.getTransaction().begin();
-        em.merge(personToEdit);
-        em.getTransaction().commit();
-    }catch(Exception e){
-        throw new WebApplicationException(e.toString());
-    }
-    return new DummyDto(personToEdit);
-    }
-
-    public DummyDto delete(int id) {
+    public List<HarbourDTO> getHarbours(){
+        
         EntityManager em = emf.createEntityManager();
-    BoatEntity personToDelete;
-    try{
-        personToDelete = (em.find(BoatEntity.class, id));
-        em.getTransaction().begin();
-        em.remove(personToDelete);
-        em.getTransaction().commit();
-    }catch(Exception e){
-        throw new WebApplicationException(e.toString());
+          List<HarbourEntity> rms;
+        try{
+        TypedQuery<HarbourEntity> query = em.createQuery("SELECT h FROM HarbourEntity h", HarbourEntity.class);
+            System.out.println(query);
+        rms = query.getResultList();
+        }catch(Exception e){    
+     throw new WebApplicationException("Internal Server Problem. We are sorry for the inconvenience " + e.toString(),500);
     }
-    return new DummyDto(personToDelete);
+        return HarbourDTO.getDTOs(rms);
     }
     
         

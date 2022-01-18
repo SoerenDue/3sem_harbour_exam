@@ -73,6 +73,19 @@ public class HarbourDTO {
         }
     }
     
+    public HarbourDTO(HarbourEntity rm) {
+        this.id = rm.getId();
+        this.name = rm.getName();
+        this.address = rm.getAddress();
+        this.capacity = rm.getCapacity();
+    }
+    
+    public static List<HarbourDTO> getDTOs(List<HarbourEntity> rms){
+        List<HarbourDTO> rmDTOs = new ArrayList();
+        rms.forEach(rm->rmDTOs.add(new HarbourDTO(rm)));
+        return rmDTOs;
+    }
+    
     @Override
     public String toString() {
         return  "HarbourDTO{" + "id=" + id + "name=" + name + " address=" + address + ", capacity=" + capacity + '}';

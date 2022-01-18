@@ -100,7 +100,7 @@ public class BoatEntity implements Serializable {
     public void setHarbour(HarbourEntity harbour) {
         this.harbour = harbour;
     }
-
+    
     public List<OwnerEntity> getOwners() {
         return owners;
     }

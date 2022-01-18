@@ -44,7 +44,7 @@ public class BoatFacade {
          return new BoatDTO(rm);
         }
 
-    public BoatDTO editBoat(int id, String name, String brand, String make, String picture) {
+    public BoatDTO editBoat(String name, String brand, String make, String picture) {
     EntityManager em = emf.createEntityManager();
     BoatEntity boatToEdit;
     try{

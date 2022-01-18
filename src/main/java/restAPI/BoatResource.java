@@ -1,4 +1,4 @@
-/*
+getHarbours/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -54,87 +54,57 @@ public class BoatResource {
     }
                 private static final EntityManagerFactory EMF = EntityManagerCreator.CreateEntityManager();
                 private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-                private static final testFacade facade = testFacade.getFacade(EMF);
+                private static final BoatFacade facade = BoatFacade.getBoatFacade(EMF);
 
-    @Path("/all")          
+    @Path("/boats")          
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-      public String getFromDB(){
-         List<OwnerDTO> list = new ArrayList();
-        list.addAll(facade.getAllBoats());
+      public String getBoatsFromDB(){
+         List<BoatDTO> list = new ArrayList();
+        list.addAll(facade.getBoats());
         return GSON.toJson(list);
-      }
-      
-      @Path("/add")
-      @POST
+      }  
+    
+    @Path("/boats/{id}")
+    @DELETE
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
+    public BoatDTO delete(@PathParam("id") int id) throws Exception{
+    BoatDTO p = facade.delete(id);
+     return p;
+    }
+    
+    @Path("/addboat")
+    @POST
     @Produces({MediaType.APPLICATION_JSON})
      @Consumes(MediaType.APPLICATION_JSON)
-        public void addNewPerson(BoatEntity p){
-            System.out.println(p);
+        public void addNewBoat(BoatEntity b){
+            System.out.println(b);
             try {
-                 if(p.getName()== null){
+                 if(b.getBrand()== null || b.getMake()== null || b.getName()== null){
                    throw new WebApplicationException(Response
           .status(BAD_REQUEST)
           .type(MediaType.APPLICATION_JSON)
-          .entity(format("Missing info please check %s", p.toString()))
+          .entity(format("Missing info please check %s", b.toString()))
           .build());
             }
         }
       catch(Exception e){
                   throw new WebApplicationException("Internal Server Problem. We are sorry for the inconvenience",501);
     }finally{
-              facade.createPerson(p.getName());
+              facade.createBoat(b);
         }
     }
-        
-        
-       @Path("/edit/{id}")
+    
+    @Path("/edit/{id}")
     @PUT
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
-    public DummyDto edit(@PathParam("id") int id, String person) throws Exception{
-    DummyDto DTO = GSON.fromJson(person, DummyDto.class);
-    facade.edit(id, DTO.getDtoName());
+    public BoatDTO boatEdit(@PathParam("id") int dtoid, String boat) throws Exception{
+    BoatDTO DTO = GSON.fromJson(boat, BoatDTO.class);
+    facade.boatEdit(DTO.getName(),DTO.getBrand(),DTO.getMake(),DTO.getPicture());
      return DTO;
 
     }
-        
-     @Path("/delete/{id}")
-    @DELETE
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes(MediaType.APPLICATION_JSON)
-    public DummyDto edit(@PathParam("id") int id) throws Exception{
-    DummyDto p = facade.delete(id);
-     return p;
-
-    }    
-        
-        
-        @Path("/5endPoints")
-        @GET
-        @Consumes(MediaType.APPLICATION_JSON)
-        @Produces({MediaType.APPLICATION_JSON})
-        public String fetch() throws IOException{
-            Gson gson = new Gson();
-//todo use multithreading 
-       List<CombinedDTO> list = new ArrayList<>();
-        String chuck = HTTPFetch.fetchData("https://api.chucknorris.io/jokes/random");
-        String joke = HTTPFetch.fetchData("https://icanhazdadjoke.com/");
-        String SWShip = HTTPFetch.fetchData("https://swapi.dev/api/starships/12/");
-        String catfact = HTTPFetch.fetchData("https://cat-fact.herokuapp.com/facts/random");
-        StarWarsShipDTO ship = gson.fromJson(SWShip, StarWarsShipDTO.class);
-        CatFactDTO cat =  gson.fromJson(catfact, CatFactDTO.class);
-            System.out.println(catfact);
-                   System.out.println(cat);
-       HarbourDTO dto = gson.fromJson(chuck, HarbourDTO.class);
-        BoatDTO jokedto = gson.fromJson(joke, BoatDTO.class);
-       CombinedDTO cw = new CombinedDTO(dto,jokedto,ship,cat);
-            System.out.println(cw);
-         list.add(cw);
-        return gson.toJson(list);
-        }
-
     
-
-
 }

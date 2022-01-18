@@ -82,14 +82,19 @@ public class OwnerEntity implements Serializable {
         return boats;
     }
 
-        public void addBoat(BoatEntity boat) {
+    public void addBoat(BoatEntity boat) {
         if(boat != null){
             this.boats.add(boat);
-            boat.getBoats.add(this);
+            boat.getOwners.add(this);
         }
     }
 
-    
+    public void removeBoat(BoatEntity boat){
+        if(boat != null){
+            boats.remove(boat);
+            boat.getOwners().remove(this);
+        }
+    }
     
     @Override
     public String toString() {

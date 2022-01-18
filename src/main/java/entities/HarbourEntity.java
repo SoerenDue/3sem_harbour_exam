@@ -87,7 +87,11 @@ public class HarbourEntity implements Serializable {
         }
     }
     
-    
+    public void removeBoat(BoatEntity boat){
+        if(boat != null){
+            boats.remove(boat);
+        }
+    }    
     
     @Override
     public String toString() {
